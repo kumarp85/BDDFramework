@@ -35,8 +35,10 @@ public class ObjectReader {
                     while ((line = br.readLine()) != null) {
                         String[] rows = line.split(csvSplitBy);
                         for (int i = 3; i < rows.length; i++) {
-                            objects.put(rows[2].trim().toUpperCase().replaceAll(" ", "_") + "_"
-                                    + colHeader[i].trim().toUpperCase().replaceAll(" ", "_"), rows[i]);
+                            objects.put(
+                                    rows[2].trim().toUpperCase().replaceAll(" ", "_") + "_"
+                                            + colHeader[i].trim().toUpperCase().replaceAll(" ", "_"),
+                                    rows[i].replace("\"", "'").replace("$", ","));
                         }
                     }
                 }
