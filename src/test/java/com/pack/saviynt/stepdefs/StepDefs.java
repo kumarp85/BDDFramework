@@ -54,7 +54,7 @@ public class StepDefs {
      * @param page the page
      */
 
-    @Given("^I Navigave to (.*) Page$")
+    @Given("^I Navigate to (.*) Page$")
     public void navigateToUrl(String page) {
         try {
             logger.info("Navigate to " + page);
@@ -86,13 +86,55 @@ public class StepDefs {
         }
     }
 
+    @When("^I Select (.*) value as (.*)$")
+    public void selectValue(String object, String property) {
+        try {
+            logger.info("I Select value into " + object);
+            if (StringUtils.isEmpty(TestDataReader.getProperty(property))) {
+                logger.info("I Select value as " + property);
+                Library.selectByEnterText(object, property);
+            } else {
+                logger.info("I Select value as " + TestDataReader.getProperty(property));
+                Library.selectByEnterText(object, TestDataReader.getProperty(property));
+            }
+        } catch (Exception e) {
+            Assert.fail(e.getMessage());
+        }
+    }
+
+    @When("^I Switch (.*) value as (.*)$")
+    public void switchValue(String object, String property) {
+        try {
+            if (StringUtils.isEmpty(TestDataReader.getProperty(property))) {
+                Library.switchValue(object, property);
+            } else {
+                Library.switchValue(object, TestDataReader.getProperty(property));
+            }
+        } catch (Exception e) {
+            Assert.fail(e.getMessage());
+        }
+    }
+
+    @Given("^I (.*) (.*) checkbox$")
+    public void selectCheckBox(String type, String object) {
+        try {
+            if (StringUtils.equals(type, "Select")) {
+                Library.selectCheckBox(object);
+            } else {
+                Library.unSelectCheckBox(object);
+            }
+        } catch (Exception e) {
+            Assert.fail(e.getMessage());
+        }
+    }
+
     /**
      * Click on object.
      * @param object the object
      */
 
-    @When("^I Click on (.*)$")
-    public void clickOnObject(String object) {
+    @When("^I Click on (.*) (.*)$")
+    public void clickOnObject(String object, String type) {
         try {
             logger.info("Click on " + object);
             Library.click(object);
