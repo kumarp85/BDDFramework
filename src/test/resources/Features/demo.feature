@@ -1,21 +1,18 @@
-@all
-Feature: FaceBook Login Module
-  I want to use this template for my feature file
+#Sample Feature Definition Template
+@tag
+Feature: User Manager Campaign Config
 
-  Scenario: Facebook Login with static data
-    Given I Navigave to Login Page
-    When I Enter userName as mana.santosh9991@gmail.com
-    And I Enter password as 1234
-    And I Click on LogIn
-    Then Verify User is Logged in or not
-
-  Scenario Outline: Facebook Login with Test Data
-    Given I Navigave to Login Page
-    When I Enter userName as <name>
-    And I Enter password as <password>
-    And I Click on LogIn
-    Then Verify User is Logged in or not
-
-    Examples: 
-      | name            | password        |
-      | userName_Field1 | password_Field1 |
+  @tag1
+  Scenario: User Manager Campaign Config Demo
+    Given I Navigate to Saviynt cloud Page
+    When I Enter userName as userName_Field1 
+    And I Enter password as password_Field1
+    And I Click on login button
+    And I Click on Admin button
+    And I Click on Configurations button
+    And I Click on Global_Configurations button
+    And I Click on User_Manager_Campaign_Config button
+    And I Click on Include_Users_without_Accounts dropdown
+    And I Select Users_without_Accounts value as Yes
+    And I Switch Certify_All_Users_By_Default value as ON
+    And I Select Reassign checkbox
